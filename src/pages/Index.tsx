@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
+import { SplineScene } from "@/components/SplineScene";
 
 const Index = () => {
   return (
@@ -17,17 +18,17 @@ const Index = () => {
         </div>
       </header>
 
-      <section className="relative h-[600px] flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ 
-            backgroundImage: "url('https://cdn.poehali.dev/projects/3a62b594-5402-4e55-a44a-88db576148ae/files/62abe5f4-bd40-413f-b116-fd234c0cbb96.jpg')",
-            filter: "brightness(0.7)"
-          }}
-        />
-        <div className="relative z-10 text-center text-white px-4 animate-fade-in">
+      <section className="relative h-[600px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary/20 to-background">
+        <div className="absolute inset-0">
+          <SplineScene 
+            scene="https://prod.spline.design/your-scene-url/scene.splinecode"
+            className="w-full h-full"
+          />
+        </div>
+        <div className="relative z-10 text-center text-foreground px-4 animate-fade-in">
           <h1 className="font-heading text-5xl md:text-6xl font-bold mb-6">
-            Производство фибро волокна<br/>нового поколения
+            FibroPro<br/>
+            <span className="text-primary">Производство фибро волокна</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
             Современные технологии и производственные мощности для создания высококачественной продукции
