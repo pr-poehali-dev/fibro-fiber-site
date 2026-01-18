@@ -1,20 +1,63 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 import { SplineScene } from "@/components/SplineScene";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const Index = () => {
+  const [open, setOpen] = useState(false);
+
+  const navLinks = [
+    { href: "#technology", label: "Технология" },
+    { href: "#capacity", label: "Мощности" },
+    { href: "#advantages", label: "Преимущества" },
+    { href: "#contact", label: "Контакты" },
+  ];
+
+  const handleNavClick = () => {
+    setOpen(false);
+  };
+
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b">
+      <header className="border-b sticky top-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="font-heading text-2xl font-bold text-primary">FibroPro</div>
+          
           <nav className="hidden md:flex gap-6">
-            <a href="#technology" className="text-foreground hover:text-primary transition-colors">Технология</a>
-            <a href="#capacity" className="text-foreground hover:text-primary transition-colors">Мощности</a>
-            <a href="#advantages" className="text-foreground hover:text-primary transition-colors">Преимущества</a>
-            <a href="#contact" className="text-foreground hover:text-primary transition-colors">Контакты</a>
+            {navLinks.map((link) => (
+              <a 
+                key={link.href}
+                href={link.href} 
+                className="text-foreground hover:text-primary transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
           </nav>
+
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger asChild className="md:hidden">
+              <Button variant="ghost" size="icon">
+                <Icon name="Menu" size={24} />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px]">
+              <nav className="flex flex-col gap-6 mt-8">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={handleNavClick}
+                    className="text-lg font-heading font-semibold text-foreground hover:text-primary transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
       </header>
 
